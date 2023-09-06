@@ -1,0 +1,23 @@
+合并两个有序数组
+===
+直接排序很简单，但要是想最节省时间和空间，当我们在操作数组时，可以使用多指针（下标）来操作，从第一个数组的末尾直接把最大的放进去，有时候逆向思维最省事。
+评论区的一句话说的很好：
+> “所有玩家都全力向前冲刺, 却不知道向后才是胜利之门。”-《头号玩家》
+以下是我喜欢的做法：
+'''
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int left = m - 1, right = n - 1, cur = m + n - 1;
+        while (left >= 0 && right >= 0) {
+            nums1[cur--] =
+                    nums1[left] > nums2[right] ? nums1[left--] : nums2[right--];
+        }
+        // nums1剩下的已经排序，可以跳过
+
+        while (right >= 0) {
+            nums1[cur--] = nums2[right--];
+        }
+    }
+};
+'''
