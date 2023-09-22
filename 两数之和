@@ -1,0 +1,23 @@
+这道题的暴力解法很好想，就是一对一对遍历，但是这样会比较慢，空间几乎没有复杂度；
+所以如果想要更快的话，就需要使用哈希表，把每个数字都存进哈希表，并在存的时候看一下哈希表中有没有匹配的值，如果有，那么就找到了；
+因为每一次寻找都是直接在内存中查找，所以少了一次循环，时间复杂度为o（n1），是一个很好的用空间换时间的案例。
+（第一次记笔记略显粗糙）
+附上最后做法：
+```class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int>hashgap;
+        for(int i=0;i<nums.size();i++){
+            auto it = hashgap.find(target - nums[i]);
+            if(it!=hashgap.end()){
+                return {it->second, i};
+            }
+            hashgap[nums[i]]=i;
+        return {};
+        }
+    }
+};
+
+
+
+```
